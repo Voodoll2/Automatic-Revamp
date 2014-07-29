@@ -3,6 +3,7 @@ from os.path import join
 def rename_out(pathToOutputs, label_list, user):
     pathToOutputs += "/"
     contents = listdir(pathToOutputs)
+    print contents
     single = []
     tars = []
     if user == "sc-eguetz":
@@ -21,5 +22,8 @@ def rename_out(pathToOutputs, label_list, user):
     length = len(tars)
     for num in range(length):
         print "Start: ", str(pathToOutputs) + str(tars[num]), "End: ", str(pathToOutputs) + str(label_list[num]) + '.tar.gz' 
-        rename(str(pathToOutputs) + str(tars[num]), str(pathToOutputs) + str(label_list[num]) + '.tar.gz')
+        #rename(str(pathToOutputs) + str(tars[num]), str(pathToOutputs) + str(label_list[num]) + '.tar.gz')
 
+labels = ['106551', '112359', '10360', '112834', '113732']
+path = "/Users/voodoll2/Desktop/Paths/Outputs"
+rename_out(path, labels, "sc-")
