@@ -1,16 +1,22 @@
 from os import listdir, rename
 from os.path import join
-def rename_out(pathToOutputs, label_list):
+def rename_out(pathToOutputs, label_list, user):
     pathToOutputs += "/"
     contents = listdir(pathToOutputs)
     single = []
     tars = []
-    tars.append("a")
-    for f in contents:
-        if f[-8:] == ').tar.gz' and f[0] != ".":
-            tars.append(f)
-    tars = sorted(tars)
-    tars[0] = 'output.tar.gz'
+    if user == "sc-eguetz":
+        tars.append("a")
+        for f in contents:
+            if f[-8:] == ').tar.gz' and f[0] != ".":
+                tars.append(f)
+        tars = sorted(tars)
+        tars[0] = 'output.tar.gz'
+    else:
+        tars.append("output.tar.gz")
+        for f in contents:
+            if f[-8:] == ').tar.gz':
+                tars.append(f)
     print tars
     length = len(tars)
     for num in range(length):

@@ -33,6 +33,7 @@ class Init():
         self.data_num = 0
         self.num_tasks = 0
         self.labels = []
+        self.user = str(user)
 
     def login(self):
         login(self.driver, self.loginUrl, self.user, self.passwd)
@@ -52,7 +53,7 @@ class Init():
     def view_status(self):
         self.labels = view(self.driver)
         print self.labels
-        rename_out(self.outFolder, self.labels)
+        rename_out(self.outFolder, self.labels, self.user)
 def main():
 ##    user = str(raw_input("Username: "))
 ##    passwd = str(raw_input("Password: "))
@@ -115,6 +116,8 @@ def main():
             init.make_task()
             init.run()
             init.view_status()
+        elif command == "quit":
+            sys.exit()
         else:
             print "Command not recognized. You must enter a proper command."
         command = str(raw_input(">>> "))
