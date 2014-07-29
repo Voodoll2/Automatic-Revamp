@@ -32,7 +32,7 @@ class Init():
         self.loginUrl = "http://www.nsgportal.org/portal/login!input.action"
         self.data_num = 0
         self.num_tasks = 0
-        self.return_tuple = {0, 0}
+        self.return_tuple = [0, 0]
         self.labels = self.return_tuple[0]
         self.folder_name = self.return_tuple[1]
         self.user = str(user)
