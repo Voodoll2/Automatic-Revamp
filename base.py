@@ -54,13 +54,9 @@ class Init():
         print self.labels
         rename_out(self.outFolder, self.labels)
 def main():
-    chromePath = "chromedriver/chromedriver"
-    chromeOptions = webdriver.ChromeOptions()
-    prefs = {"download.default_directory" : "/Users/voodoll2/Desktop/Automatic/Outputs/"}
-    chromeOptions.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
 ##    user = str(raw_input("Username: "))
 ##    passwd = str(raw_input("Password: "))
+    person =str(raw_input("User: "))
     if person == 'v':
         user = "sc-vvikram"
         chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
@@ -92,6 +88,10 @@ def main():
         outFolder = "/Users/voodoll2/Desktop/paths/Outputs"
         modelrun = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
     passwd = "changeme"
+    chromeOptions = webdriver.ChromeOptions()
+    prefs = {"download.default_directory" : "/Users/voodoll2/Desktop/Automatic/Outputs/"}
+    chromeOptions.add_experimental_option("prefs", prefs)
+    driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
     fieldnames = ("Model Name","filename","ID Number","Output filename", "main filename", "program used", "Time taken", "Cores", "nodes", "Link to Model")
     init = Init(driver, user, passwd, uplFolder, outFolder, modelrun)
     command = str(raw_input(">>> "))
