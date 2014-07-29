@@ -1,7 +1,5 @@
 import csv
 
-sheet = open("/Users/voodoll2/Desktop/Automatic/modelrun.csv", "rU")
-
 class modelObject:
     def __init__(self, accessNumber, fileName, outputFileName, inputFileName, cores, nodes, linkToModeldb):
         self.accessNumber = accessNumber
