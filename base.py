@@ -46,7 +46,7 @@ class Init():
         run_task(self.driver)
 
     def download(self):
-        Download()
+        Download(self.uplFolder)
 
     def view_status(self):
         self.labels = view(self.driver)
@@ -60,11 +60,32 @@ def main():
     driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
 ##    user = str(raw_input("Username: "))
 ##    passwd = str(raw_input("Password: "))
-    user = "sc-eguetz"
-    passwd = "Xcaliber1"
-    uplFolder = "/Users/voodoll2/Desktop/Automatic/Models/"
-    outFolder = "/Users/voodoll2/Desktop/Automatic/Outputs"
-    modelrun = open("/Users/voodoll2/Desktop/Automatic/modelrun.csv", "rU")
+    if person == 'v':
+        user = "sc-vvikram"
+        uplFolder = "/home/vasu/Desktop/Automatic 2/Models/page1models"
+        outFolder = "/home/vasu/Desktop/Automatic 2/Outputs/page1outputs"
+        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun2.csv", "rU")
+    elif person == "v2":
+        user = "vasutest"
+        uplFolder = "/home/vasu/Desktop/Automatic 2/Models/page1models"
+        outFolder = "/home/vasu/Desktop/Automatic 2/Outputs/page1outputs"
+        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun2.csv", "rU")
+    elif person == "s":
+        user = "sc-sseshan"
+        uplFolder = "/home/steve/Desktop/nsgwork/models/"
+        outFolder = "/home/steve/Desktop/nsgwork/outputs/"
+        modelrun =  open("/home/steve/Desktop/nsgwork/", "rU")
+    elif person == "s2":
+        user = "seshantest"
+        uplFolder = "/home/steve/Desktop/nsgwork/models/"
+        outFolder = "/home/steve/Desktop/nsgwork/outputs/"
+        modelrun =  open("/home/steve/Desktop/nsgwork/", "rU")
+    elif person == "e":
+        user = "sc-eguetz"
+        uplFolder = "/Users/voodoll2/Desktop/Automatic/Models/"
+        outFolder = "/Users/voodoll2/Desktop/Automatic/Outputs"
+        modelrun = open("/Users/voodoll2/Desktop/Automatic/modelrun.csv", "rU")
+    passwd = "changeme"
     fieldnames = ("Model Name","filename","ID Number","Output filename", "main filename", "program used", "Time taken", "Cores", "nodes", "Link to Model")
     init = Init(driver, user, passwd, uplFolder, outFolder, modelrun)
     command = str(raw_input(">>> "))
