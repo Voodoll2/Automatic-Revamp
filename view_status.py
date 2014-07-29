@@ -1,5 +1,11 @@
 import time
+from os import *
 from selenium.webdriver.common.keys import Keys
+def stahp():
+    print "When files are done downloading, enter a folder name and press enter."
+    x = raw_input(">>> ")
+    return x
+
 def view(driver):
     time.sleep(1)
     task_link = driver.find_element_by_xpath("/html/body/div/div/div[2]/div/div/div/div/table/tbody[2]/tr[2]/td[2]/a")
@@ -43,4 +49,14 @@ def view(driver):
         else:
             print "Number", x, "is still Running"
         print label_list
-    return label_list
+    folder_name  = stahp()
+    global q
+    q = ""
+    while q != "exit"
+        if not(os.path.exists(str(pathToOutputs) + "/" + str(folder_name) + "/")):
+            mkdir(str(pathToOutputs) + str(folder_name))
+            q = "exit"
+        else:
+            print "Dat folder already exists"
+            folder_name = stahp()
+    return label_list, folder_name

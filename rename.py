@@ -2,13 +2,12 @@ import time
 from os import listdir, rename, mkdir
 from os.path import join
 def step():
-    print "When files are done downloading, enter a folder name and press enter."
+    print "When files are done downloading, press enter."
     x = raw_input(">>> ")
-    return x
+    return
 
-def rename_out(pathToOutputs, label_list):
-    folder_name = step()
-    mkdir(str(pathToOutputs) + str(folder_name)) 
+def rename_out(pathToOutputs, label_list, folder_name):
+    step()
     pathToOutputs = pathToOutputs + "/" + str(folder_name) + "/"
     contents = listdir(pathToOutputs)
     print contents           

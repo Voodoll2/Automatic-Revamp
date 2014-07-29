@@ -32,7 +32,9 @@ class Init():
         self.loginUrl = "http://www.nsgportal.org/portal/login!input.action"
         self.data_num = 0
         self.num_tasks = 0
-        self.labels = []
+        self.return_tuple = None
+        self.labels = self.return_tuple[0]
+        self.folder_name = self.return_tuple[1]
         self.user = str(user)
 
     def login(self):
@@ -53,7 +55,7 @@ class Init():
     def view_status(self):
         self.labels = view(self.driver)
         print self.labels
-        rename_out(self.outFolder, self.labels)
+        rename_out(self.outFolder, self.labels, self.folder_name)
 def main():
 ##    user = str(raw_input("Username: "))
 ##    passwd = str(raw_input("Password: "))
