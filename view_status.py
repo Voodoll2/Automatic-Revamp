@@ -50,12 +50,12 @@ def view(driver):
             print "Number", x, "is still Running"
         print label_list
     folder_name  = stahp()
-    global q
-    q = ""
-    while q != "exit":
+    global z
+    z = ""
+    while z != "exit":
         if not(os.path.exists(str(pathToOutputs) + "/" + str(folder_name) + "/")):
             mkdir(str(pathToOutputs) + str(folder_name))
-            q = "exit"
+            z = "exit"
         else:
             print "Dat folder already exists"
             folder_name = stahp()
