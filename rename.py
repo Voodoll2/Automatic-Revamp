@@ -6,25 +6,19 @@ def step():
     x = raw_input(">>> ")
     return
 
-def rename_out(pathToOutputs, label_list, user):
+def rename_out(pathToOutputs, label_list):
     step()
     pathToOutputs += "/"
     contents = listdir(pathToOutputs)
     print contents           
     single = []
     tars = []
-    if user == "sc-eguetz":
-        tars.append("a")
-        for f in contents:
-            if f[-8:] == ').tar.gz' and f[0] != ".":
-                tars.append(f)
-        tars = sorted(tars)
-        tars[0] = 'output.tar.gz'
-    else:
-        tars.append("output.tar.gz")
-        for f in contents:
-            if f[-8:] == ').tar.gz':
-                tars.append(f)
+    tars.append("a")
+    for f in contents:
+        if f[-8:] == ').tar.gz' and f[0] != ".":
+            tars.append(f)
+    tars = sorted(tars)
+    tars[0] = 'output.tar.gz'
     print tars
     length = len(tars)
     for num in range(length):

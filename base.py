@@ -53,7 +53,7 @@ class Init():
     def view_status(self):
         self.labels = view(self.driver)
         print self.labels
-        rename_out(self.outFolder, self.labels, self.user)
+        rename_out(self.outFolder, self.labels)
 def main():
 ##    user = str(raw_input("Username: "))
 ##    passwd = str(raw_input("Password: "))
