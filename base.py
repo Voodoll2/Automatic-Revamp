@@ -87,7 +87,7 @@ def main():
     
     passwd = "changeme"
     chromeOptions = webdriver.ChromeOptions()
-    prefs = {"download.default_directory" : "/Users/voodoll2/Desktop/Automatic/Outputs/"}
+    prefs = {"download.default_directory" : str(outFolder)}
     chromeOptions.add_experimental_option("prefs", prefs)
     driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
     fieldnames = ("Model Name","filename","ID Number","Output filename", "main filename", "program used", "Time taken", "Cores", "nodes", "Link to Model")
