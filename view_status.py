@@ -52,7 +52,7 @@ def view(driver):
     folder_name  = stahp()
     global q
     q = ""
-    while q != "exit"
+    while q != "exit":
         if not(os.path.exists(str(pathToOutputs) + "/" + str(folder_name) + "/")):
             mkdir(str(pathToOutputs) + str(folder_name))
             q = "exit"
