@@ -63,29 +63,34 @@ def main():
 ##    passwd = str(raw_input("Password: "))
     if person == 'v':
         user = "sc-vvikram"
-        uplFolder = "/home/vasu/Desktop/Automatic 2/Models/page1models"
-        outFolder = "/home/vasu/Desktop/Automatic 2/Outputs/page1outputs"
-        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun2.csv", "rU")
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        uplFolder = "/home/vasu/Desktop/paths/Models/"
+        outFolder = "/home/vasu/Desktop/paths/Outputs/"
+        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
     elif person == "v2":
         user = "vasutest"
-        uplFolder = "/home/vasu/Desktop/Automatic 2/Models/page1models"
-        outFolder = "/home/vasu/Desktop/Automatic 2/Outputs/page1outputs"
-        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun2.csv", "rU")
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        uplFolder = "/home/vasu/Desktop/paths/Models/"
+        outFolder = "/home/vasu/Desktop/paths/Outputs/"
+        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
     elif person == "s":
         user = "sc-sseshan"
-        uplFolder = "/home/steve/Desktop/nsgwork/models/"
-        outFolder = "/home/steve/Desktop/nsgwork/outputs/"
-        modelrun =  open("/home/steve/Desktop/nsgwork/", "rU")
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        uplFolder = "/home/steve/Desktop/paths/models/"
+        outFolder = "/home/steve/Desktop/paths/outputs/"
+        modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
     elif person == "s2":
         user = "seshantest"
-        uplFolder = "/home/steve/Desktop/nsgwork/models/"
-        outFolder = "/home/steve/Desktop/nsgwork/outputs/"
-        modelrun =  open("/home/steve/Desktop/nsgwork/", "rU")
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        uplFolder = "/home/steve/Desktop/paths/models/"
+        outFolder = "/home/steve/Desktop/paths/outputs/"
+        modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
     elif person == "e":
         user = "sc-eguetz"
-        uplFolder = "/Users/voodoll2/Desktop/Automatic/Models/"
-        outFolder = "/Users/voodoll2/Desktop/Automatic/Outputs"
-        modelrun = open("/Users/voodoll2/Desktop/Automatic/modelrun.csv", "rU")
+        chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver_mac"
+        uplFolder = "/Users/voodoll2/Desktop/paths/Models/"
+        outFolder = "/Users/voodoll2/Desktop/paths/Outputs"
+        modelrun = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
     passwd = "changeme"
     fieldnames = ("Model Name","filename","ID Number","Output filename", "main filename", "program used", "Time taken", "Cores", "nodes", "Link to Model")
     init = Init(driver, user, passwd, uplFolder, outFolder, modelrun)
