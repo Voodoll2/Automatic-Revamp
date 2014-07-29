@@ -9,7 +9,7 @@ def step():
 def rename_out(pathToOutputs, label_list):
     folder_name = step()
     mkdir(str(pathToOutputs) + str(folder_name)) 
-    pathToOutputs += "/"
+    pathToOutputs = pathToOutputs + "/" + str(folder_name) + "/"
     contents = listdir(pathToOutputs)
     print contents           
     single = []
