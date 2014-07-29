@@ -63,7 +63,7 @@ def main():
         outFolder = "/home/vasu/Desktop/paths/Outputs/"
         modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
     elif person == "s":
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
+        chromePath = "/home/steve/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/home/steve/Desktop/paths/models/"
         outFolder = "/home/steve/Desktop/paths/outputs/"
         modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
