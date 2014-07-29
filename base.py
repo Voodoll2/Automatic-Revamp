@@ -59,31 +59,31 @@ def main():
     person =str(raw_input("User: "))
     if person == 'v':
         user = "sc-vvikram"
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/home/vasu/Desktop/paths/Models/"
         outFolder = "/home/vasu/Desktop/paths/Outputs/"
         modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
     elif person == "v2":
         user = "vasutest"
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/home/vasu/Desktop/paths/Models/"
         outFolder = "/home/vasu/Desktop/paths/Outputs/"
         modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
     elif person == "s":
         user = "sc-sseshan"
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/home/steve/Desktop/paths/models/"
         outFolder = "/home/steve/Desktop/paths/outputs/"
         modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
     elif person == "s2":
         user = "seshantest"
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver_linux"
+        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/home/steve/Desktop/paths/models/"
         outFolder = "/home/steve/Desktop/paths/outputs/"
         modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
     elif person == "e":
         user = "sc-eguetz"
-        chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver_mac"
+        chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver"
         uplFolder = "/Users/voodoll2/Desktop/paths/Models/"
         outFolder = "/Users/voodoll2/Desktop/paths/Outputs"
         modelrun = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
