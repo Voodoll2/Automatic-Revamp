@@ -1,20 +1,16 @@
 import time
 from os import listdir, rename
 from os.path import join
+def step():
+    print "When files are done downloading, press enter."
+    x = raw_input(">>> ")
+    return
+
 def rename_out(pathToOutputs, label_list, user):
+    step()
     pathToOutputs += "/"
     contents = listdir(pathToOutputs)
-    print contents
-    global q
-    q = ""
-    while q != "exit":
-        contents = listdir(pathToOutputs)
-        for f in contents:
-            if "crdownload" in f:
-                print "waiting..."
-                time.sleep(1)
-            else:
-                q == "exit"
+    print contents           
     single = []
     tars = []
     if user == "sc-eguetz":
