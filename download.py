@@ -3,14 +3,14 @@ import re
 import os
 from os.path import join
 
-def dlfile(url, saveFileName, pathToInputs):
+def dlfile(url, saveFileName, pathToModels):
     # Open the url
     try:
         f = urlopen(url)
         print "downloading " + url
 
         # Open our local file for writing
-        with open(join(pathToInputs, saveFileName), "wb") as local_file:
+        with open(join(pathToModels, saveFileName), "wb") as local_file:
             local_file.write(f.read())
 
     #handle errors
@@ -19,7 +19,7 @@ def dlfile(url, saveFileName, pathToInputs):
     except URLError, e:
         print "URL Error:", e.reason, url
 
-def download():
+def download(pathToModels):
     urls = []
     urls.append("https://neuinfo.org/mynif/search.php?q=*&t=indexable&cf=Models&nif=nlx_154697-12&ff=Database:ModelDB&s=Output%20files&sa=true&b=%0")
     for i in range(1, 5):
@@ -48,5 +48,5 @@ def download():
             accessNumber = str(accessNumber.group())[2:-1]
             downloadLink = 'http://senselab.med.yale.edu/modeldb/eavBinDown.asp?' + downloadMatch.group()
             if not accessNumber == '144570':
-                dlfile(downloadLink, accessNumber)
+                dlfile(downloadLink, accessNumber, pathToModels)
             count += 1
