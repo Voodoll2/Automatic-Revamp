@@ -17,8 +17,8 @@ password = "changeme"
 person =str(raw_input("User: "))
 if person == 'v':
 	chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
-	pathToModels = "/home/vasu/Desktop/paths/Models/"
-	pathToOutputs = "/home/vasu/Desktop/paths/Outputs/"
+	pathToModels = "/home/vasu/Desktop/paths/Models/" + userfile + "/"
+	pathToOutputs = "/home/vasu/Desktop/paths/Outputs/" + userfile + "outputs/"
 	csvsheets = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
 elif person == "s":
 	pathToModels = "/home/steve/Programming/pythondev/nsgwork/" + userfile + "/" 
@@ -27,8 +27,8 @@ elif person == "s":
 	csvsheet = 'modelrun.csv'
 elif person == "e":
 	chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver"
-	pathToModels = "/Users/voodoll2/Desktop/paths/Models/"
-	pathToOutputs = "/Users/voodoll2/Desktop/paths/Outputs"
+	pathToModels = "/Users/voodoll2/Desktop/paths/Models/" + userfile + "/"
+	pathToOutputs = "/Users/voodoll2/Desktop/paths/Outputs" + userfile + "/outputs/"
 	csvsheet = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
 
 account =str(raw_input("Account: "))
