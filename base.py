@@ -1,136 +1,140 @@
-#hello
-from os import listdir
-from os.path import isfile, join, exists
-from os import makedirs
-from csvModels import csvToDict
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-import time
-import sys
-import csv
-import json
-from os import listdir, rename, makedirs
-from os.path import isfile, join, exists
-import datetime
+from os import listdir
+from os.path import isfile, join
+import re
+from Model import Model
 from login import login
-from upload import upload
-from task import make_task
-from run import run_task
-from download import download as Download
-from view_status import view
-from rename import rename_out
+from upload import uploadFile
+from makealltasks import makeAllTasks
+from csvmodels import csvToDict
+from runall import runAllTasks
+from getoutputs import getoutputs, storeOutputs
+import download
 
-class Init():
-    def __init__(self, driver, user, passwd, uplFolder, outFolder, modelrun):
-        self.driver = driver
-        self.user = user
-        self.passwd = passwd
-        self.uplFolder = uplFolder
-        self.outFolder = outFolder
-        self.modelrun = modelrun
-        self.loginUrl = "http://www.nsgportal.org/portal/login!input.action"
-        self.data_num = 0
-        self.num_tasks = 0
-        self.return_tuple = [0, 0]
-        self.labels = self.return_tuple[0]
-        self.folder_name = self.return_tuple[1]
-        self.user = str(user)
+userfile = str(raw_input("Where Are Models Stored: "))
+username = ""
+password = "changeme"
+person =str(raw_input("User: "))
+if person == 'v':
+	chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
+	pathToModels = "/home/vasu/Desktop/paths/Models/"
+	pathToOutputs = "/home/vasu/Desktop/paths/Outputs/"
+	csvsheets = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
+elif person == "s":
+	pathToModels = "/home/steve/Programming/pythondev/nsgwork/" + userfile + "/" 
+	pathToOutputs = "/home/steve/Programming/pythondev/nsgwork/" + userfile + "outputs/"
+	chromePath = "/home/steve/Programming/pythondev/chromedriver"
+	csvsheet = 'modelrun.csv'
+elif person == "e":
+	chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver"
+	pathToModels = "/Users/voodoll2/Desktop/paths/Models/"
+	pathToOutputs = "/Users/voodoll2/Desktop/paths/Outputs"
+	csvsheet = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
 
-    def login(self):
-        login(self.driver, self.loginUrl, self.user, self.passwd)
+account =str(raw_input("Account: "))
+if account == "e":
+	username = "sc-eguetz"
+elif account == "v":
+	username = "sc-vvikram"
+elif account == "s":
+	username = "sc-sseshan"
+elif account == "v2":
+	username = "vasutest"
+elif account == "s2":
+	username = "seshantest"
 
-    def upload(self):
-         self.data_num = upload(self.driver, self.uplFolder)
 
-    def make_task(self):
-        self.num_tasks = make_task(self.driver, self.modelrun, self.uplFolder)
+nodescores = str(raw_input('csv or nodes:cores >>> '))
 
-    def run(self):
-        run_task(self.driver)
 
-    def download(self):
-        Download(self.uplFolder)
+chromeOptions = webdriver.ChromeOptions()
+prefs = {'download.default_directory': pathToOutputs}
+chromeOptions.add_experimental_option('prefs',prefs)
+phantomjs_path = "/home/steve/Programming/phantomjs-1.9.7-linux-i686/bin/phantomjs"
+driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
 
-    def view_status(self):
-        self.labels = view(self.driver)
-        print self.labels
-        rename_out(self.outFolder, self.labels, self.folder_name)
-def main():
-##    user = str(raw_input("Username: "))
-##    passwd = str(raw_input("Password: "))
-    person =str(raw_input("User: "))
-    if person == 'v':
-        chromePath = "/home/vasu/Desktop/paths/chromedriver/chromedriver"
-        uplFolder = "/home/vasu/Desktop/paths/Models/"
-        outFolder = "/home/vasu/Desktop/paths/Outputs/"
-        modelrun = open("/home/vasu/Desktop/Automatic 2/modelrun.csv", "rU")
-    elif person == "s":
-        chromePath = "/home/steve/Desktop/paths/chromedriver/chromedriver"
-        uplFolder = "/home/steve/Desktop/paths/models/"
-        outFolder = "/home/steve/Desktop/paths/outputs/"
-        modelrun =  open("/home/steve/Desktop/nsgwork/repositories/modelrun.csv", "rU")
-    elif person == "e":
-        chromePath = "/Users/voodoll2/Desktop/paths/chromedriver/chromedriver"
-        uplFolder = "/Users/voodoll2/Desktop/paths/Models/"
-        outFolder = "/Users/voodoll2/Desktop/paths/Outputs"
-        modelrun = open("/Users/voodoll2/Desktop/Auto/modelrun.csv", "rU")
+def command_line():
+    alreadyLoggedIn = False
+    tasks = []
+    outputs = []
+    while True:
+        userInput = str(raw_input(">>>"))
+        if(userInput == 'autodownloadrun'):
+            download.download(pathToModels)
+            login(driver, username, password)
+            alreadyLoggedIn = True
+            tasks = uploadAll(driver, alreadyLoggedIn, username, password, nodescores)
+            makeAllTasks(driver, tasks, alreadyLoggedIn, username, password)
+            outputs = runAllTasks(driver, tasks, alreadyLoggedIn, pathToOutputs, username, password)
+            print "outputs: ", outputs
+            
+        elif(userInput == 'autorun'):
+            login(driver, username, password)
+            alreadyLoggedIn = True
+            tasks = uploadAll(driver, alreadyLoggedIn, username, password, nodescores)
+            print "tasks: ", tasks
+            makeAllTasks(driver, tasks, alreadyLoggedIn, username, password)
+            outputs = runAllTasks(driver, tasks, alreadyLoggedIn, pathToOutputs, username, password)
+            print "Outputs: ", outputs
 
-    account =str(raw_input("Account: "))
-    if account == "e":
-        user = "sc-eguetz"
-    elif account == "v":
-        user = "sc-vvikram"
-    elif account == "s":
-        user = "sc-sseshan"
-    elif account == "v2":
-        user = "vasutest"
-    elif account == "s2":
-        user = "seshantest"
+        elif(userInput == "download"):
+            download.download(pathToModels)
     
-    passwd = "changeme"
-    chromeOptions = webdriver.ChromeOptions()
-    prefs = {"download.default_directory" : str(outFolder)}
-    chromeOptions.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=chromePath, chrome_options=chromeOptions)
-    fieldnames = ("Model Name","filename","ID Number","Output filename", "main filename", "program used", "Time taken", "Cores", "nodes", "Link to Model")
-    init = Init(driver, user, passwd, uplFolder, outFolder, modelrun)
-    command = str(raw_input(">>> "))
-    while command != "quit" or command != "exit":
-        if command == "" or command == None:
-            print "You must enter a command"
-        elif command == "login":
-            init.login()
-        elif command == "upload":
-            init.upload()
-        elif command == "make":
-            init.make_task()
-        elif command == "run":
-            init.run()
-        elif command == "download":
-            init.download()
-        elif command == "view":
-            init.view_status()
-        elif command == "all":
-            init.download()
-            init.login()
-            init.upload()
-            init.make_task()
-            init.run()
-            init.view_status()
-        elif command == "quit":
-            sys.exit()
+        elif(userInput == "login"):
+            login(driver, username, password)
+            alreadyLoggedIn = True
+        
+        elif(userInput == "uploadandmaketasks"):
+            tasks = uploadAll(driver, alreadyLoggedIn, username, password, nodescores)
+            print "tasks: ", tasks
+            makeAllTasks(driver, tasks, alreadyLoggedIn, username, password)
+
+        elif(userInput == "runall"):
+            outputs = runAllTasks(driver, tasks, pathToOutputs, alreadyLoggedIn, username, password)
+            print "outputs: ", outputs
+        
+        elif(userInput == "getoutputs"):
+            if not alreadyLoggedIn:
+                count = 0
+                for f in listdir(pathToModels):
+                    count += 1
+                    print count
+                outputs = storeOutputs(driver, count, pathToOutputs, alreadyLoggedIn, username, password)
+                print outputs
+                alreadyLoggedIn = True
+            getoutputs(driver, outputs, alreadyLoggedIn, username, password)
+        
+        elif(userInput == "exit"):
+            return
+
+def customSortKey(filename):
+    return int(filename[2:3])
+
+def uploadAll(driver, loggedIn, username, password, nodescores):
+    allContents = listdir(pathToModels)
+    allContents = sorted(allContents, key=customSortKey)
+    zips = []
+    tasks = []
+    for f in allContents:
+        if isfile(join(pathToModels, f)):
+            zips.append(f)
+    d = csvToDict(open(csvsheet))
+    for f in zips:
+        n = 0
+        c = 0
+        if nodescores == 'csv':
+            n = d[f]['Nodes']
+            c = d[f]['Cores']
         else:
-            print "Command not recognized. You must enter a proper command."
-        command = str(raw_input(">>> "))
-    sys.exit()
-main()
-    
+            regexnodes = re.findall('\d+:', nodescores)
+            n = int(regexnodes[0][:-1])
+            regexcores = re.findall(':\d+', nodescores)
+            c = int(regexcores[0][1:])
+        mod = Model(pathToModels, f, c, n, d[f]['Input File'], 'Neuron')
+        tasks.append(uploadFile(driver, mod, loggedIn, username, password))
+    return tasks
 
+def createAllOutputObjects(driver, numTasks, pathToOutputs, pathToModels):
+    pass
 
-
-
-
-    
-    
-    
+command_line()
