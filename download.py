@@ -22,10 +22,6 @@ def dlfile(url, saveFileName, pathToModels):
 def download(pathToModels):
     urls = []
     urls.append("https://neuinfo.org/mynif/search.php?q=*&t=indexable&cf=Models&nif=nlx_154697-12&ff=Database:ModelDB&s=Output%20files&sa=true&b=%0")
-    for i in range(1, 5):
-        page_end = str(i*20)
-        print page_end, type(page_end)
-        urls.append("https://neuinfo.org/mynif/search.php?q=*&t=indexable&cf=Models&nif=nlx_154697-12&ff=Database:ModelDB&s=Output%20files&sa=true&b=%d" % float(page_end))
     for url in urls:
         print url
         nifpage = urlopen(url)
